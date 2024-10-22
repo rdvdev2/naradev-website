@@ -1,10 +1,19 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use components::{footer::Footer, header::Header, wip_banner::WIPBanner};
+use components::{footer::Footer, header::Header, home::Home, wip_banner::WIPBanner};
 
 mod components;
 mod domain;
+
+#[macro_export]
+macro_rules! include_html {
+    ($filename:literal) => {
+        yew::prelude::Html::from_html_unchecked(yew::prelude::AttrValue::from(include_str!(
+            $filename
+        )))
+    };
+}
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {
@@ -21,7 +30,7 @@ impl Route {
     fn switch(self) -> Html {
         match self {
             Self::Home => html! {
-                { "TODO: This page" }
+                <Home />
             },
             Self::NotFound => html! {
                 { "404: Not found" }
@@ -60,9 +69,7 @@ fn App() -> Html {
             <div class="min-h-screen flex flex-col bg-gray-800 text-white">
                 <WIPBanner />
                 <Header/>
-                <main class="flex-grow">
                     <Switch<Route> render={Route::switch} />
-                </main>
                 <Footer/>
             </div>
         </BrowserRouter>
