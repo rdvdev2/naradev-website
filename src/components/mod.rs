@@ -4,5 +4,6 @@ pub mod footer;
 pub mod header;
 pub mod hello;
 pub mod home;
+pub mod not_found;
 pub mod social_image_link;
 pub mod wip_banner;

@@ -1,7 +1,9 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use components::{footer::Footer, header::Header, home::Home, wip_banner::WIPBanner};
+use components::{
+    footer::Footer, header::Header, home::Home, not_found::NotFound, wip_banner::WIPBanner,
+};
 
 mod components;
 mod domain;
@@ -36,7 +38,7 @@ impl Route {
             },
             Self::Projecs => Self::NotFound.switch(),
             Self::NotFound => html! {
-                <div class="flex-grow">{ "404: Not found" }</div>
+                <NotFound />
             },
         }
     }
