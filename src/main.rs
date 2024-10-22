@@ -19,21 +19,24 @@ macro_rules! include_html {
 pub enum Route {
     #[at("/")]
     Home,
+    #[at("/projects")]
+    Projecs,
     #[not_found]
     #[at("/404")]
     NotFound,
 }
 
 impl Route {
-    pub const NAVIGATION: [Self; 1] = [Self::Home];
+    pub const NAVIGATION: [Self; 2] = [Self::Home, Self::Projecs];
 
     fn switch(self) -> Html {
         match self {
             Self::Home => html! {
                 <Home />
             },
+            Self::Projecs => Self::NotFound.switch(),
             Self::NotFound => html! {
-                { "404: Not found" }
+                <div class="flex-grow">{ "404: Not found" }</div>
             },
         }
     }
@@ -41,6 +44,7 @@ impl Route {
     fn name(&self) -> String {
         match self {
             Self::Home => "Home",
+            Self::Projecs => "Projects",
             Self::NotFound => "Not found",
         }
         .to_owned()

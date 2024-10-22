@@ -15,9 +15,11 @@ pub fn Header() -> Html {
                     <h1 class="font-bold text-2xl">{ "Nara DEV" }</h1>
                 </Link<Route>>
             </div>
-            <nav class="flex hover:underline">
+            <nav class="flex">
                 { for Route::NAVIGATION.iter().map(|x| html! {
+                    <div class="hover:underline m-1">
                     <Link<Route> to={x.clone()}>{ x.name() }</Link<Route>>
+                    </div>
                 })}
             </nav>
         </header>
