@@ -1,3 +1,5 @@
+name: Deployment workflow
+
 on:
   push:
     branches:
