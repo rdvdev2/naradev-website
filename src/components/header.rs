@@ -12,7 +12,7 @@ pub fn Header() -> Html {
                     <img src="assets/images/logo.png" class="h-8 rounded" />
                 </Link<Route>>
                 <Link<Route> to={Route::Home}>
-                    <h1 class="font-bold text-2xl">{ "Nara DEV" }</h1>
+                    <h1 class="font-bold text-2xl">{ "naritanara.xyz" }</h1>
                 </Link<Route>>
             </div>
             <nav class="flex">

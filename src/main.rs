@@ -61,7 +61,10 @@ fn TitleSetter() -> Html {
             .unwrap()
             .document()
             .unwrap()
-            .set_title(&format!("Nara DEV :: {}", route.unwrap_or_default().name()));
+            .set_title(&format!(
+                "naritanara.xyz :: {}",
+                route.unwrap_or_default().name()
+            ));
     });
 
     html! {}
