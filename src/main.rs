@@ -22,21 +22,21 @@ pub enum Route {
     #[at("/")]
     Home,
     #[at("/projects")]
-    Projecs,
+    Projects,
     #[not_found]
     #[at("/404")]
     NotFound,
 }
 
 impl Route {
-    pub const NAVIGATION: [Self; 2] = [Self::Home, Self::Projecs];
+    pub const NAVIGATION: [Self; 2] = [Self::Home, Self::Projects];
 
     fn switch(self) -> Html {
         match self {
             Self::Home => html! {
                 <Home />
             },
-            Self::Projecs => Self::NotFound.switch(),
+            Self::Projects => Self::NotFound.switch(),
             Self::NotFound => html! {
                 <NotFound />
             },
@@ -46,7 +46,7 @@ impl Route {
     fn name(&self) -> String {
         match self {
             Self::Home => "Home",
-            Self::Projecs => "Projects",
+            Self::Projects => "Projects",
             Self::NotFound => "Not found",
         }
         .to_owned()
