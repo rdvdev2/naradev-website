@@ -1,29 +1,14 @@
 use chrono::Datelike;
-use gloo_net::http::Request;
 use yew::prelude::*;
 
-use crate::{components::social_image_link::SocialImageLink, domain::social::Social};
+use crate::{
+    components::social_image_link::SocialImageLink, domain::social::Social,
+    hooks::use_data_asset::use_data_asset,
+};
 
 #[function_component]
 pub fn Footer() -> Html {
-    let socials = use_state(|| vec![]);
-    {
-        let socials = socials.clone();
-        use_effect_with((), move |_| {
-            let socials = socials.clone();
-            wasm_bindgen_futures::spawn_local(async move {
-                let fetched_socials: Vec<Social> = Request::get("/assets/data/socials.json")
-                    .send()
-                    .await
-                    .unwrap()
-                    .json()
-                    .await
-                    .unwrap();
-                socials.set(fetched_socials);
-            });
-            || ()
-        });
-    }
+    let socials = use_data_asset::<Social>("socials.json");
 
     let year = chrono::Local::now().year();
 

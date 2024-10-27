@@ -1,31 +1,15 @@
 use crate::components::card::Card;
 use crate::components::project_card::ProjectCard;
 use crate::domain::project::Project;
+use crate::hooks::use_data_asset::use_data_asset;
 use crate::Route;
-use gloo_net::http::Request;
+
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component]
 pub fn FeaturedProjects() -> Html {
-    let projects = use_state(|| vec![]);
-    {
-        let projects = projects.clone();
-        use_effect_with((), move |_| {
-            let projects = projects.clone();
-            wasm_bindgen_futures::spawn_local(async move {
-                let fetched_projects: Vec<Project> = Request::get("/assets/data/projects.json")
-                    .send()
-                    .await
-                    .unwrap()
-                    .json()
-                    .await
-                    .unwrap();
-                projects.set(fetched_projects);
-            });
-            || ()
-        });
-    }
+    let projects = use_data_asset::<Project>("projects.json");
 
     html! {
         <Card class="flex-col">

@@ -7,6 +7,7 @@ use components::{
 
 mod components;
 mod domain;
+mod hooks;
 
 #[macro_export]
 macro_rules! include_html {
