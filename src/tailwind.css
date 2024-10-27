@@ -5,3 +5,8 @@
 main * {
   @apply max-w-screen-xl;
 }
+
+#project_card_inner {
+  --background-overlay: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(var(--background-overlay), var(--background-overlay)), var(--bg-url) center / cover;
+}

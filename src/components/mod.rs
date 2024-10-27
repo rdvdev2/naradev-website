@@ -1,9 +1,11 @@
 pub mod about_me;
 pub mod card;
+pub mod featured_projects;
 pub mod footer;
 pub mod header;
 pub mod hello;
 pub mod home;
 pub mod not_found;
+pub mod project_card;
 pub mod social_image_link;
 pub mod wip_banner;

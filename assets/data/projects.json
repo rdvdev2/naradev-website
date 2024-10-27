@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Time Travel Mod",
+    "slug": "time-travel-mod",
+    "short_description": "A technology and exploration mod themed around time traveling through history.",
+    "card_background_image": "https://media.forgecdn.net/attachments/275/298/2020-01-11_17.png"
+  },
+  {
+    "name": "Disable Custom Worlds Advice",
+    "slug": "disable-custom-worlds-advice",
+    "short_description": "A simple utility Minecraft mod that removes the annoying \"Experimental settings\" warning screen.",
+    "card_background_image": "https://media.forgecdn.net/avatars/293/332/637328852126283848.png"
+  },
+  {
+    "name": "Advocat",
+    "slug": "advocat",
+    "short_description": "A script that streamlines your jutge.org assignments by automatically compiling and testing your work. Beware the documentation is written in Catalan.",
+    "card_background_image": "https://jutge.org/ico/welcome/jutge.png"
+  },
+  {
+    "name": "SISA Assembler",
+    "slug": "sisa-assembler",
+    "short_description": "An assembler for the SISC-vn computer, written in Rust!",
+    "card_background_image": "https://images.unsplash.com/photo-1557701197-2f99da0922dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1031&q=80"
+  }
+]

@@ -20,6 +20,6 @@ impl Social {
     }
 
     pub fn get_logo_url(&self) -> String {
-        format!("assets/images/socials/{}.svg", self.get_id())
+        format!("/assets/images/socials/{}.svg", self.get_id())
     }
 }

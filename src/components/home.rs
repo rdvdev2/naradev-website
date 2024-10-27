@@ -1,5 +1,6 @@
 use yew::prelude::*;
 
+use crate::components::featured_projects::FeaturedProjects;
 use crate::components::{about_me::AboutMe, hello::Hello};
 
 #[function_component]
@@ -8,6 +9,7 @@ pub fn Home() -> Html {
         <main class="flex-grow flex flex-col p-5 items-center gap-5">
             <Hello />
             <AboutMe />
+            <FeaturedProjects />
         </main>
     }
 }

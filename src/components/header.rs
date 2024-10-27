@@ -9,7 +9,7 @@ pub fn Header() -> Html {
         <header class="bg-purple-900 p-4 flex justify-between items-center drop-shadow-xl">
             <div class="flex gap-5">
                 <Link<Route> to={Route::Home}>
-                    <img src="assets/images/logo.png" class="h-8 rounded" />
+                    <img src="/assets/images/logo.png" class="h-8 rounded" />
                 </Link<Route>>
                 <Link<Route> to={Route::Home}>
                     <h1 class="font-bold text-2xl">{ "naritanara.xyz" }</h1>

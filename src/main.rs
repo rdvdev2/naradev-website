@@ -23,6 +23,8 @@ pub enum Route {
     Home,
     #[at("/projects")]
     Projects,
+    #[at("/projects/:slug")]
+    Project { slug: String },
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -37,6 +39,7 @@ impl Route {
                 <Home />
             },
             Self::Projects => Self::NotFound.switch(),
+            Self::Project { slug } => Self::NotFound.switch(),
             Self::NotFound => html! {
                 <NotFound />
             },
@@ -47,6 +50,7 @@ impl Route {
         match self {
             Self::Home => "Home",
             Self::Projects => "Projects",
+            Self::Project { slug } => "MISSING NAME",
             Self::NotFound => "Not found",
         }
         .to_owned()

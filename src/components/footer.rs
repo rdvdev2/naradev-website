@@ -12,7 +12,7 @@ pub fn Footer() -> Html {
         use_effect_with((), move |_| {
             let socials = socials.clone();
             wasm_bindgen_futures::spawn_local(async move {
-                let fetched_socials: Vec<Social> = Request::get("assets/data/socials.json")
+                let fetched_socials: Vec<Social> = Request::get("/assets/data/socials.json")
                     .send()
                     .await
                     .unwrap()
