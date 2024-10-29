@@ -1,3 +1,5 @@
+use domain::{project::Project, social::Social};
+use hooks::use_data_asset::use_data_asset;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -47,11 +49,15 @@ impl Route {
         }
     }
 
-    fn name(&self) -> String {
+    fn name(&self, projects: &Vec<Project>) -> String {
         match self {
             Self::Home => "Home",
             Self::Projects => "Projects",
-            Self::Project { slug } => "MISSING NAME",
+            Self::Project { slug } => projects
+                .iter()
+                .filter(|x| x.get_slug() == slug)
+                .next()
+                .map_or("Not found", |x| x.get_name()),
             Self::NotFound => "Not found",
         }
         .to_owned()
@@ -61,14 +67,16 @@ impl Route {
 #[function_component]
 fn TitleSetter() -> Html {
     let route = use_route::<Route>();
-    use_effect_with(route.clone(), |_| {
+    let projects = use_context::<Vec<Project>>().unwrap();
+
+    use_effect_with((route.clone(), projects.clone()), move |_| {
         web_sys::window()
             .unwrap()
             .document()
             .unwrap()
             .set_title(&format!(
                 "naritanara.xyz :: {}",
-                route.unwrap_or_default().name()
+                route.unwrap_or_default().name(&projects)
             ));
     });
 
@@ -77,15 +85,22 @@ fn TitleSetter() -> Html {
 
 #[function_component]
 fn App() -> Html {
+    let projects = use_data_asset("projects.json");
+    let socials = use_data_asset("socials.json");
+
     html! {
         <BrowserRouter>
-            <TitleSetter />
-            <div class="min-h-screen flex flex-col bg-gray-800 text-white">
-                <WIPBanner />
-                <Header/>
-                    <Switch<Route> render={Route::switch} />
-                <Footer/>
-            </div>
+            <ContextProvider<Vec<Project>> context={(*projects).clone()}>
+            <ContextProvider<Vec<Social>> context={(*socials).clone()}>
+                <TitleSetter />
+                <div class="min-h-screen flex flex-col bg-gray-800 text-white">
+                    <WIPBanner />
+                    <Header/>
+                        <Switch<Route> render={Route::switch} />
+                    <Footer/>
+                </div>
+            </ContextProvider<Vec<Social>>>
+            </ContextProvider<Vec<Project>>>
         </BrowserRouter>
     }
 }

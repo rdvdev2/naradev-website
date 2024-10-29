@@ -1,14 +1,11 @@
 use chrono::Datelike;
 use yew::prelude::*;
 
-use crate::{
-    components::social_image_link::SocialImageLink, domain::social::Social,
-    hooks::use_data_asset::use_data_asset,
-};
+use crate::{components::social_image_link::SocialImageLink, domain::social::Social};
 
 #[function_component]
 pub fn Footer() -> Html {
-    let socials = use_data_asset::<Social>("socials.json");
+    let socials = use_context::<Vec<Social>>().unwrap();
 
     let year = chrono::Local::now().year();
 

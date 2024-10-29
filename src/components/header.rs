@@ -1,10 +1,12 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::Route;
+use crate::{domain::project::Project, Route};
 
 #[function_component]
 pub fn Header() -> Html {
+    let projects = use_context::<Vec<Project>>().unwrap();
+
     html! {
         <header class="bg-purple-900 p-4 flex justify-between items-center drop-shadow-xl">
             <div class="flex gap-5">
@@ -18,7 +20,7 @@ pub fn Header() -> Html {
             <nav class="flex">
                 { for Route::NAVIGATION.iter().map(|x| html! {
                     <div class="hover:underline m-1">
-                    <Link<Route> to={x.clone()}>{ x.name() }</Link<Route>>
+                    <Link<Route> to={x.clone()}>{ x.name(&projects) }</Link<Route>>
                     </div>
                 })}
             </nav>
