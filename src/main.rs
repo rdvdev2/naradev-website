@@ -1,3 +1,5 @@
+use std::panic;
+
 use domain::{project::Project, social::Social};
 use hooks::use_data_asset::use_data_asset;
 use yew::prelude::*;
@@ -106,5 +108,6 @@ fn App() -> Html {
 }
 
 fn main() {
+    panic::set_hook(Box::new(console_error_panic_hook::hook));
     yew::Renderer::<App>::new().render();
 }
